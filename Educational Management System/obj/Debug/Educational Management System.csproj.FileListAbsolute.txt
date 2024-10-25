@@ -1,0 +1,7 @@
+C:\Users\DELL\source\repos\Educational Management System\Educational Management System\bin\Debug\Educational Management System.exe.config
+C:\Users\DELL\source\repos\Educational Management System\Educational Management System\bin\Debug\Educational Management System.exe
+C:\Users\DELL\source\repos\Educational Management System\Educational Management System\bin\Debug\Educational Management System.pdb
+C:\Users\DELL\source\repos\Educational Management System\Educational Management System\obj\Debug\Educational Management System.csproj.AssemblyReference.cache
+C:\Users\DELL\source\repos\Educational Management System\Educational Management System\obj\Debug\Educational Management System.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\Educational Management System\Educational Management System\obj\Debug\Educational Management System.exe
+C:\Users\DELL\source\repos\Educational Management System\Educational Management System\obj\Debug\Educational Management System.pdb
