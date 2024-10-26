@@ -93,6 +93,25 @@ namespace Educational_Management_System
                     break;
             }
         }
+        public string FindSolution(ref List<string> Solutionsid)
+        {
+            foreach(var code in Solutionsid)
+            {
+                if (SolutionsCode.Contains(code))
+                    return code;
+            }
+            return null;
+        }
+
+        public string CreateSolution(string StudentId)
+        {
+            Console.Write("Enter your solution: ");
+            string content = Console.ReadLine();
+            Solution NewSol = new Solution(content, StudentId, AssignmentId);
+            NewSol.SolutionId = HelperFunctions.GenerateRandomID((string id) => SolutionsAccessor.ContainsKey(id));
+            AddSol(NewSol);
+            return NewSol.SolutionId;
+        }
 
     }
 }

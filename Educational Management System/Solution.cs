@@ -6,10 +6,9 @@ namespace Educational_Management_System
 {
     class Solution
     {
-        public int SolutionId { get; set;}
+        public string SolutionId { get; set;}
         public string SolutionText { get; set; }
         public int grade { get; set; }
-        public int Notification { get; set; }
         public List<string> Comment { get; set; }
         public string AssignmentId { get; set; }
         public string StudentId { get; set; }
@@ -17,7 +16,6 @@ namespace Educational_Management_System
         public Solution(string SolutionText, string StudentId, string AssignmentId)
         {
             grade = -1;
-            Notification = 0;
             this.SolutionText = SolutionText;
             this.StudentId = StudentId;
             this.AssignmentId = AssignmentId;

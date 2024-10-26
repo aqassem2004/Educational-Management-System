@@ -12,7 +12,7 @@ namespace Educational_Management_System
         public string CourseName { get; set; }
         public string Owner { get; set; }
         public List<string> RegisteredStudents { get; set; }
-        List<string> AssignmentsCode = new List<string>();
+        public List<string> AssignmentsCode = new List<string>();
         public Course()
         {
             RegisteredStudents = new List<string>();
@@ -53,7 +53,7 @@ namespace Educational_Management_System
             }
         }
          void ViewAssignment(Assignment assignment)
-        {
+         {
             while (true)
             {
                 Console.WriteLine("Choose the command\n" +
@@ -84,6 +84,67 @@ namespace Educational_Management_System
                 if (command == 5)
                     break;
             }
+         }
+        public void ViewCourseForStudent(ref List<string> Solutionsid)
+        {
+            Console.WriteLine($"Course: {CourseName}  Code: {CourseCode}" +
+                       $"- By Doc: {Owner}");
+            Console.WriteLine($"Course has {AssignmentsCode.Count} Assignment");
+
+            if(AssignmentsCode.Count>0)
+            {
+                int counter = 1;
+                foreach(var code in AssignmentsCode)
+                {
+                    Console.Write($"Assignment {counter++} ");
+                    string SolCode = AssignmentsAccessor[code].FindSolution(ref Solutionsid);
+                    Console.Write($"{(SolCode != null ? "submitted" : "NOT submitted")} ");
+                    if (SolCode != null)
+                    {
+                        if(SolutionsAccessor[SolCode].grade==-1)
+                            Console.WriteLine($"- NA / { AssignmentsAccessor[code].MaxGrade}"); 
+                        else
+                            Console.WriteLine($"- {SolutionsAccessor[SolCode].grade} / { AssignmentsAccessor[code].MaxGrade}");
+
+                    }
+                    else
+                        Console.WriteLine($"- NA / { AssignmentsAccessor[code].MaxGrade}");
+                }
+            }
+        }
+        public void ListUnSubmittedAssignment(ref List<string> Solutionsid , string StudentId)
+        {
+            if (AssignmentsCode.Count > 0)
+            {
+                int counter = 1, c = 1;
+                List<string> UnSubmittedAssignment = new List<string>();
+                foreach (var code in AssignmentsCode)
+                {
+
+                    string SolCode = AssignmentsAccessor[code].FindSolution(ref Solutionsid);
+                    if (SolCode == null)
+                    {
+                        Console.Write($"{c++}- Assignment {counter++} \n");
+                        UnSubmittedAssignment.Add(code);
+                    }
+                    else
+                        counter++;
+                }
+                if (UnSubmittedAssignment.Count > 0)
+                {
+                    int choise = HelperFunctions.ChoiceFromList("Assignment", UnSubmittedAssignment.Count);
+                    if (choise != 0)
+                    {
+                        string SolCode = AssignmentsAccessor[UnSubmittedAssignment[choise - 1]].CreateSolution(StudentId);
+                        StudentsAccessor[StudentId].Solutionsid.Add(SolCode);
+                    }
+                }
+                else
+                    Console.WriteLine("You have delivered all of them.");
+
+            }
+            else
+                Console.WriteLine("There are no assignments.");
         }
 
     }

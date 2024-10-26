@@ -98,7 +98,10 @@ namespace Educational_Management_System
                 }
             }
         }
-
+        public static void AddSol(Solution solution)
+        {
+            Solutions.Add(solution.SolutionId, solution);
+        }
         private void SignUpWeb()
         {
             User newUser = new User();
@@ -106,6 +109,7 @@ namespace Educational_Management_System
             newUser.UserName = HelperFunctions.ValidateInput("Enter Username: ", "Username already used.\n", (string input) => Users.ContainsKey(input));
 
             newUser.Password = HelperFunctions.ValidatePassword("Enter Password: ", "The password is too small.\n", (string input) => input.Length < 8);
+            Console.WriteLine();
             newUser.UserId = HelperFunctions.GenerateRandomID((string id) => Users.ContainsKey(id));
             Console.WriteLine($"User id: {newUser.UserId}");
             Console.WriteLine("Select gender: \n" +
@@ -168,7 +172,8 @@ namespace Educational_Management_System
 
         private void ShowStudentInterface(User user)
         {
-            Console.WriteLine("Student Interface - Coming soon.");
+            StudentInterface studentInterface = new StudentInterface(user.UserName);
+           // Console.WriteLine("Student Interface - Coming soon.");
         }
 
         private void ShowTeacherAssistantInterface(User user)
